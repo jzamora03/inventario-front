@@ -1,0 +1,44 @@
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header" [ngClass]="isEditMode ? 'bg-warning' : 'bg-success'">
+            <h4 class="mb-0">{{ isEditMode ? 'Editar Producto' : 'Agregar Nuevo Producto' }}</h4>
+          </div>      
+      <div class="card-body">
+        <div *ngIf="isLoading" class="text-center">
+            <div class="spinner-border text-success" role="status">
+              <span class="visually-hidden">Cargando producto...</span>
+            </div>
+          </div>
+          
+        <!-- <form [formGroup]="productForm" (ngSubmit)="submitForm()"> -->
+            <form *ngIf="!isLoading" [formGroup]="productForm" (ngSubmit)="submitForm()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" id="name" class="form-control" formControlName="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea id="description" class="form-control" formControlName="description" required></textarea>
+          </div>          
+          <div class="mb-3">
+            <label for="price" class="form-label">Precio</label>
+            <input type="number" id="price" class="form-control" formControlName="price" required>
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Categoría</label>
+            <input type="text" id="category" class="form-control" formControlName="category" required>
+          </div>
+          <div class="mb-3">
+            <label for="stockQuantity" class="form-label">Stock</label>
+            <input type="number" id="stockQuantity" class="form-control" formControlName="stockQuantity" required>
+          </div>
+          
+          <div class="d-flex justify-content-between mb-3">
+            <button class="btn btn-outline-secondary" (click)="goToProductList()">Volver a la Lista</button>
+            <button type="submit" class="btn btn-success">Guardar Producto</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
